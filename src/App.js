@@ -1,10 +1,10 @@
 import React from "react";
 //import { render } from "react-dom";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import Home from "./Home";
-import About from "./About";
-import Shop from "./Shop";
-import NavBar from "./Navbar";
+import Home from "./Componentes/Home";
+import About from "./Componentes/About";
+import Shop from "./Componentes/Shop";
+import NavBar from "./Componentes/Navbar";
 
 function App() {
 

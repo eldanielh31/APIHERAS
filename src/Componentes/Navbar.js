@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { palette } from '@material-ui/system';
+//import { Link } from "react-router-dom";
+//import { palette } from '@material-ui/system';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -69,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = () => {
 
   const classes = useStyles();
-  const homeEvent = (event) => event.preventDefault();
 
   return (
     <div className={classes.root}>
