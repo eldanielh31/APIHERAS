@@ -7,3 +7,9 @@ cd HERAS
 
 # install deps
 npm install
+
+Technologies
+Visual Studio Code
+node
+react
+material-ui
