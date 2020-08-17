@@ -8,7 +8,7 @@ cd HERAS
 # install deps
 npm install
 
-Technologies
+# Technologies
 Visual Studio Code
 node
 react
