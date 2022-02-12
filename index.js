@@ -29,8 +29,7 @@ app.use("/api/products", productRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/order", orderRoute);
 
-
 //Escuchar al puerto
 app.listen(process.env.PORT, ()=> {
-    console.log("Server corriendo")
+    console.log("Server corriendo");
 });
