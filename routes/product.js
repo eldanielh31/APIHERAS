@@ -44,8 +44,8 @@ router.delete("/:id", verifyTokenAndAdmi, async (req, res) => {
 router.get("/find/:id", async (req, res) => {
     try {
         const findedProduct = await Product.findById(req.params.id);
-        res.status(200).json(findedProduct);
         res.header("Access-Control-Allow-Origin", "*");
+        res.status(200).json(findedProduct);
     } catch (err) {
         res.status(500).json(err);
         console.log(err);
@@ -93,8 +93,8 @@ router.get("/stats", verifyTokenAndAdmi, async (req, res) =>{
                 }
             }
         ]);
-        res.status(200).json(data);
         res.header("Access-Control-Allow-Origin", "*");
+        res.status(200).json(data);
     }catch(err){
         console.log(err);
         res.status(500).json(err);
