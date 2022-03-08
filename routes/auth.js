@@ -3,6 +3,12 @@ const User = require("../modules/User");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
+router.use(async function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 //Register
 router.post("/register", async (req, res) =>{
     const newUser = new User({
@@ -45,7 +51,8 @@ router.post("/login", async (req, res)=>{
             {expiresIn:"3d"}
         );
   
-        const { password, ...others } = user._doc;  
+        const { password, ...others } = user._doc;
+
         res.status(200).json({...others, accessToken});
 
     }catch(err){

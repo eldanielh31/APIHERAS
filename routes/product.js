@@ -2,8 +2,13 @@ const router = require("express").Router();
 const Product = require("../modules/Product")
 const { verifyTokenAndAuthorization, verifyTokenAndAdmi } = require("../routes/verifyToken");
 
-//CREATE
+router.use(async function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
+//CREATE
 router.post("/",verifyTokenAndAdmi, async(req, res)=>{
     const newProduct = new Product(req.body);
     try{
@@ -44,7 +49,6 @@ router.delete("/:id", verifyTokenAndAdmi, async (req, res) => {
 router.get("/find/:id", async (req, res) => {
     try {
         const findedProduct = await Product.findById(req.params.id);
-        res.header("Access-Control-Allow-Origin", "*");
         res.status(200).json(findedProduct);
     } catch (err) {
         res.status(500).json(err);
@@ -65,7 +69,7 @@ router.get("/", async (req, res) => {
         }else{
             products = await Product.find();
         }
-        res.header("Access-Control-Allow-Origin", "*");
+        
         res.status(200).json(products);
     } catch (err) {
         res.status(500).json(err);
@@ -93,7 +97,6 @@ router.get("/stats", verifyTokenAndAdmi, async (req, res) =>{
                 }
             }
         ]);
-        res.header("Access-Control-Allow-Origin", "*");
         res.status(200).json(data);
     }catch(err){
         console.log(err);
