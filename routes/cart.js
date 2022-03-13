@@ -3,6 +3,13 @@ const { response } = require("express");
 const Cart = require("../modules/Cart");
 const { verifyTokenAndAuthorization, verifyTokenAndAdmi, verifyToken } = require("../routes/verifyToken");
 
+router.use(async function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+});
+
 //CREATE
 
 router.post("/",verifyToken, async(req, res)=>{

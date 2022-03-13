@@ -4,7 +4,8 @@ const { verifyTokenAndAuthorization, verifyTokenAndAdmi } = require("../routes/v
 
 router.use(async function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "*");
     next();
   });
 
@@ -62,6 +63,7 @@ router.get("/", async (req, res) => {
     try {
         let products;
         if(qNew){
+            
             products = await Product.find().sort({createdAt: -1}).limit(5);
         }else if(qCategory){
             products = await Product.find( {categories: {$in:[qCategory]} });

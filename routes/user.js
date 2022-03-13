@@ -2,6 +2,12 @@ const router = require("express").Router();
 const User = require("../modules/User");
 const { verifyTokenAndAuthorization, verifyTokenAndAdmi } = require("../routes/verifyToken");
 
+router.use(async function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+});
+
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
     try {
         const updateUser = await User.findByIdAndUpdate(
@@ -72,7 +78,7 @@ router.get("/stats", verifyTokenAndAdmi, async (req, res) =>{
                     total:{$sum: 1}
                 }
             }
-        ]);
+        ]).sort({_id: 1});
         res.status(200).json(data);
 
     }catch(err){
