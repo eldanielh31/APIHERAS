@@ -8,6 +8,7 @@ router.use(async function (req, res, next) {
     next();
 });
 
+//PUT
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
     try {
         const updateUser = await User.findByIdAndUpdate(
